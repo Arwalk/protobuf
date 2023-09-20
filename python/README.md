@@ -21,8 +21,8 @@ If for some reason you wish to build the packages directly from this repo, you
 can use the following Bazel commands:
 
 ```
-$ bazel build //upb/python/dist:source_wheel
-$ bazel build //upb/python/dist:binary_wheel
+$ bazel build //python/dist:source_wheel
+$ bazel build //python/dist:binary_wheel
 ```
 
 The binary wheel will build against whatever version of Python is installed on

@@ -153,8 +153,8 @@ filegroup(
 internal_ruby_proto_library(
     name = "well_known_ruby_protos",
     srcs = [":well_known_protos"],
-    includes = ["src"],
     default_runtime = "",
+    includes = ["src"],
     visibility = [
         "//conformance:__pkg__",
         "//ruby:__subpackages__",
@@ -182,14 +182,14 @@ cc_binary(
 cc_binary(
     name = "protoc_static",
     copts = COPTS,
-    linkopts = LINK_OPTS,
     features = select({
-      # This isn't possible on mac because there is no static library for lcrt0.o
-      "@platforms//os:osx": [],
-      "//build_defs:config_osx": [],
-      # When cross-compiling we need to statically link all C++ libraries.
-      "//conditions:default": ["fully_static_link"],
+        # This isn't possible on mac because there is no static library for lcrt0.o
+        "@platforms//os:osx": [],
+        "//build_defs:config_osx": [],
+        # When cross-compiling we need to statically link all C++ libraries.
+        "//conditions:default": ["fully_static_link"],
     }),
+    linkopts = LINK_OPTS,
     visibility = ["//visibility:public"],
     deps = ["//src/google/protobuf/compiler:protoc_lib"],
 )
@@ -201,9 +201,9 @@ cc_binary(
 # Expose the runtime for the proto_lang_toolchain so that it can also be used in
 # a user-defined proto_lang_toolchain.
 alias(
-  name = "protobuf_nowkt",
-  actual = "//src/google/protobuf:protobuf_nowkt",
-  visibility = ["//visibility:public"],
+    name = "protobuf_nowkt",
+    actual = "//src/google/protobuf:protobuf_nowkt",
+    visibility = ["//visibility:public"],
 )
 
 # The "lite" runtime works for .proto files that specify the option:
@@ -545,11 +545,11 @@ internal_ruby_proto_library(
         # The above must come first.
         "src",
     ],
-    deps = [":well_known_ruby_protos"],
     visibility = [
         "//conformance:__pkg__",
         "//ruby:__subpackages__",
     ],
+    deps = [":well_known_ruby_protos"],
 )
 
 filegroup(
